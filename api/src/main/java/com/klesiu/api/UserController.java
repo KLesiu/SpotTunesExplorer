@@ -3,20 +3,22 @@ package com.klesiu.api;
 
 
 import com.klesiu.api.Auth.AuthorizationRequest;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.michaelthelin.spotify.requests.authorization.authorization_code.AuthorizationCodeRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.klesiu.api.Auth.UserAuthorization.*;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class UserController{
     @PostMapping("/login")
-    public String login (@RequestBody AuthorizationRequest request){
+    public Map<String, String> login (@RequestBody AuthorizationRequest request){
+        System.out.println("CALL");
         String code = request.getCode();
         AuthorizationCodeRequest authorizationCodeRequest = spotifyApi.authorizationCode(code)
                 .build();
@@ -24,6 +26,9 @@ public class UserController{
         System.out.println(spotifyApi.getAccessToken());
         System.out.println(spotifyApi.getRefreshToken());
 
-        return spotifyApi.getAccessToken();
+        Map<String,String> data = new HashMap<>();
+        data.put("accessToken",spotifyApi.getAccessToken());
+        data.put("refreshToken",spotifyApi.getRefreshToken());
+        return data;
     }
 }
