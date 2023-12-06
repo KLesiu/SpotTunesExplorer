@@ -15,9 +15,9 @@ import { AuthService } from '../services/auth.service';
             music_note
             </span>
         </h1>
-        <app-login class="w-[30%] h-[45%] bg-green-900/30 rounded-2xl p-5" *ngIf="!authorized;else dashboard"/>
+        <app-login class="w-[25%] h-[75%] bg-green-900/30 rounded-2xl p-5" *ngIf="!authorized;else dashboard"/>
         <ng-template #dashboard>
-            <app-dashboard/>
+            <app-dashboard class="w-[95%] h-[85%] bg-green-900/30 rounded-2xl p-5"/>
         </ng-template>
     </main>
     `,
