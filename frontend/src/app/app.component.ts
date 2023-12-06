@@ -11,7 +11,7 @@ import requestToken from './types/requestToken.type';
   standalone: true,
   imports: [CommonModule, RouterOutlet,LoginComponent,NgIf,DashboardComponent],
   template:`
-  <app-login *ngIf="authorized!==true;else dashboard"/>
+  <app-login *ngIf="!authorized;else dashboard"/>
   <ng-template #dashboard>
     <app-dashboard/>
   </ng-template>

@@ -5,7 +5,7 @@ import requestToken from "../types/requestToken.type";
     providedIn:'root'
 })
 export class AuthService{
-    private readonly URL = "http://localhost:8080/api"
+    private readonly URL:string = "http://localhost:8080/api"
 
     async getToken(code:string){
         console.log(code)
@@ -18,10 +18,11 @@ export class AuthService{
                 code:code
             })
 
-        }).then(res=>res.json()).catch(err=>err)
+        }).then(res=>res).catch(err=>err).then(data=>data.json())
         localStorage.setItem("accessToken",response.accessToken)
         localStorage.setItem("refreshToken",response.refreshToken)
         return response
 
     }
+
 }
