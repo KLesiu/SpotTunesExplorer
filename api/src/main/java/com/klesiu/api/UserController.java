@@ -35,21 +35,5 @@ public class UserController{
         data.put("refreshToken",spotifyApi.getRefreshToken());
         return data;
     }
-    @GetMapping("/top/artists")
-    public Artist[] getUserTopArtists(){
-        GetUsersTopArtistsRequest getUsersTopArtistsRequest = spotifyApi
-                .getUsersTopArtists()
-                .time_range("long_term")
-                .limit(20)
-                .offset(0)
-                .build();
-        try{
-            final Paging<Artist> artistPaging = getUsersTopArtistsRequest.execute();
-            System.out.println(Arrays.toString(artistPaging.getItems()));
-            return artistPaging.getItems();
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return new Artist[0];
-    };
+
 }

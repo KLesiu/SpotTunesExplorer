@@ -6,13 +6,12 @@ import { Injectable } from "@angular/core";
 })
 export class TunesService{
     private readonly URL:string="https://api.spotify.com/v1/me/top/artists?limit=10&offset=0&time_range=long_term"
-    private readonly token:string|null= localStorage.getItem("accessToken")
-    async getUserTopArtists(){
+    async getUserTopArtists(token:string){
         const response = await fetch(this.URL,{
             headers:{
-                "Authorization":`Bearer ${this.token}`
+                "Authorization":`Bearer ${token}`
             }
-        }).then(res=>res).catch(err=>err)
+        }).then(res=>res.json()).catch(err=>err).then(data=>data)
         console.log(response)
         return response
 

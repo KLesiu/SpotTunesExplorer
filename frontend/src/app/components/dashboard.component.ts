@@ -46,7 +46,7 @@ export class DashboardComponent{
         return userInfo
     }
     async getArtists(){
-        const artists = await this.tunesService.getUserTopArtists()
+        const artists = await this.tunesService.getUserTopArtists(this.token!)
         this.artists=artists
         console.log(this.artists)
         return artists
