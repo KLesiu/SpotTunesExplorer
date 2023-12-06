@@ -9,8 +9,8 @@ import { TunesService } from '../services/tunes.service';
     imports:[NgIf,CommonModule],
     template: `
     <section class="w-[100%] h-[100%] flex ">
-       <div *ngIf="!info;else infoSection">
-        <h2>error</h2>
+       <div *ngIf="!showProfile;else infoSection">
+        <button (click)="showProf()">SHOW</button>
        </div>
        <ng-template #infoSection>
             <div class="w-[30%] border-r-2 border-r-black p-5 flex flex-col items-center justify-start gap-[10%]">
@@ -26,6 +26,7 @@ import { TunesService } from '../services/tunes.service';
                 <button (click)="getArtists()" class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
                 <button class="text-3xl bg-violet-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-violet-600">SHOW MY FAVOURITES TRACKS</button>
             </div>
+            <button (click)="logout()" class="absolute">LOGOUT</button>
 
        </ng-template>
 
@@ -37,13 +38,11 @@ export class DashboardComponent{
     private tunesService:TunesService=inject(TunesService)
     public info:any;
     public artists:any;
-    ngOnInit(){
-        this.getInfo()
-    }
+    public showProfile:boolean=false
+    public token:string|null=""
     async getInfo(){
-        const userInfo= await this.userService.getUserProfile()
+        const userInfo= await this.userService.getUserProfile(this.token!)
         this.info=userInfo
-        console.log(this.info)
         return userInfo
     }
     async getArtists(){
@@ -51,5 +50,15 @@ export class DashboardComponent{
         this.artists=artists
         console.log(this.artists)
         return artists
+    }
+    logout():String{
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("refreshToken")
+        return window.location.href="/"
+    }
+    showProf(){
+        this.token=localStorage.getItem("accessToken")
+        this.showProfile=true
+        this.getInfo()
     }
 }

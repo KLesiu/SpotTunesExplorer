@@ -6,9 +6,7 @@ import requestToken from "../types/requestToken.type";
 })
 export class AuthService{
     private readonly URL:string = "http://localhost:8080/api"
-
     async getToken(code:string){
-        console.log(code)
         const response:requestToken = await fetch(`${this.URL}/login`,{
             method:"POST",
             headers:{
@@ -21,7 +19,7 @@ export class AuthService{
         }).then(res=>res).catch(err=>err).then(data=>data.json())
         localStorage.setItem("accessToken",response.accessToken)
         localStorage.setItem("refreshToken",response.refreshToken)
-        return response
+        return response.accessToken
 
     }
 
