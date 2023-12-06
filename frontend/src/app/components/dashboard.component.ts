@@ -2,11 +2,12 @@ import { Component,inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { TunesService } from '../services/tunes.service';
+import { TopArtistsComponent } from './topartists.component';
 
 @Component({
     selector:'app-dashboard',
     standalone:true,
-    imports:[NgIf,CommonModule],
+    imports:[NgIf,CommonModule,TopArtistsComponent],
     template: `
     <section class="w-[100%] h-[100%] flex ">
        <div *ngIf="!showProfile;else infoSection">
@@ -22,12 +23,15 @@ import { TunesService } from '../services/tunes.service';
                 <p>followers: {{info.followers.total}}</p>
                 </div>
             </div>
-            <div class="w-[70%] flex flex-col p-5 justify-center items-center gap-[20%]">
-                <button (click)="getArtists()" class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
-                <button class="text-3xl bg-violet-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-violet-600">SHOW MY FAVOURITES TRACKS</button>
-            </div>
+            <app-topartists *ngIf="artists;else chooseSection"/>
+            <ng-template #chooseSection>
+                <div class="w-[70%] flex flex-col p-5 justify-center items-center gap-[20%]">
+                    <button (click)="getArtists()" class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
+                    <button class="text-3xl bg-violet-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-violet-600">SHOW MY FAVOURITES TRACKS</button>
+                </div>
+                
+            </ng-template>
             <button (click)="logout()" class="absolute">LOGOUT</button>
-
        </ng-template>
 
     </section>

@@ -12,7 +12,6 @@ export class TunesService{
                 "Authorization":`Bearer ${token}`
             }
         }).then(res=>res.json()).catch(err=>err).then(data=>data)
-        console.log(response)
         return response
 
     }
