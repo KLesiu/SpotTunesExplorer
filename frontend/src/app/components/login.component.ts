@@ -12,6 +12,14 @@ import { Component } from '@angular/core';
     `,
 })
 export class LoginComponent{
-    AUTH_URL:string = "https://accounts.spotify.com/authorize?client_id=491a2c9963de4a8f8f515e7b6a2bb9a1&response_type=code&redirect_uri=http://localhost:4200&scope=streaming%20user-read-email%20user-read-private%20user-library-read%20user-library-modify%20user-read-playback-state%20user-modify-playback-state"
+    AUTH_URL:string="https://accounts.spotify.com/authorize"
+    ngOnInit(){
+        this.AUTH_URL+= "?client_id=491a2c9963de4a8f8f515e7b6a2bb9a1"
+        this.AUTH_URL+= "&response_type=code"
+        this.AUTH_URL+= "&redirect_uri=http://localhost:4200"
+        this.AUTH_URL+= "&show_dialog=true"
+        this.AUTH_URL+= "&scope=user-read-private user-read-playback-state user-top-read"
+    }
+
     
 }
