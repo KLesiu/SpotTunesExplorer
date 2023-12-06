@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
     imports:[NgIf,LoginComponent,DashboardComponent],
     template: `
     <main class="bg-gradient-to-r from-emerald-300 from-10% via-emerald-400 via-30% to-emerald-500 to-90%  w-screen h-screen flex flex-wrap justify-center" >
-        <h1 class="font-mono text-5xl font-black text-center w-[100%] h-[10%] flex justify-center">SpotTunesExplorer       
+        <h1 class="font-mono text-5xl mt-[1%] font-black text-center w-[100%] h-[10%] flex justify-center">SpotTunesExplorer       
             <span class="text-5xl  material-symbols-outlined">
             music_note
             </span>

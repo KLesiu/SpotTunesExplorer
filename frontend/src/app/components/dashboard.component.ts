@@ -21,8 +21,11 @@ import { CommonModule, NgIf } from '@angular/common';
                 <p>followers: {{info.followers.total}}</p>
                 </div>
             </div>
-  
-        
+            <div class="w-[70%] flex flex-col p-5 justify-center items-center gap-[20%]">
+                <button class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
+                <button class="text-3xl bg-violet-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-violet-600">SHOW MY FAVOURITES TRACKS</button>
+            </div>
+
        </ng-template>
 
     </section>
