@@ -9,7 +9,7 @@ import { MainComponent } from './components/main.component';
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet,MainComponent],
-  template:`<app-main>`
+  template:`<app-main >`
   
 })
 export class AppComponent {
