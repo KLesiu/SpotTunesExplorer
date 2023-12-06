@@ -1,6 +1,7 @@
 import { Component,inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { CommonModule, NgIf } from '@angular/common';
+import { TunesService } from '../services/tunes.service';
 
 @Component({
     selector:'app-dashboard',
@@ -22,7 +23,7 @@ import { CommonModule, NgIf } from '@angular/common';
                 </div>
             </div>
             <div class="w-[70%] flex flex-col p-5 justify-center items-center gap-[20%]">
-                <button class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
+                <button (click)="getArtists()" class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
                 <button class="text-3xl bg-violet-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-violet-600">SHOW MY FAVOURITES TRACKS</button>
             </div>
 
@@ -33,7 +34,9 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 export class DashboardComponent{
     private userService:UserService = inject(UserService)
+    private tunesService:TunesService=inject(TunesService)
     public info:any;
+    public artists:any;
     ngOnInit(){
         this.getInfo()
     }
@@ -42,5 +45,11 @@ export class DashboardComponent{
         this.info=userInfo
         console.log(this.info)
         return userInfo
+    }
+    async getArtists(){
+        const artists = await this.tunesService.getUserTopArtists()
+        this.artists=artists
+        console.log(this.artists)
+        return artists
     }
 }
