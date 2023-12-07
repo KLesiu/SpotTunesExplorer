@@ -39,7 +39,7 @@ import { TopArtistsComponent } from './topartists.component';
                 </div>
                 
             </ng-template>
-            <button (click)="logout()" class="absolute">LOGOUT</button>
+            <button  (click)="logout()" class="absolute w-[5%] bg-red-700  hover:bg-red-600 rounded-2xl top-[90%] h-[5%]">LOGOUT</button>
        </ng-template>
 
     </section>
