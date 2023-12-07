@@ -23,7 +23,7 @@ import { TopArtistsComponent } from './topartists.component';
                 <p>followers: {{info.followers.total}}</p>
                 </div>
             </div>
-            <app-topartists *ngIf="artists;else chooseSection"/>
+            <app-topartists class="w-[70%] p-5" *ngIf="artists;else chooseSection"/>
             <ng-template #chooseSection>
                 <div class="w-[70%] flex flex-col p-5 justify-center items-center gap-[20%]">
                     <button (click)="getArtists()" class="text-3xl bg-blue-700 w-[50%] h-[15%] rounded-lg font-semibold hover:bg-blue-600">SHOW MY FAVOURITES ARTISTS</button>
@@ -52,7 +52,6 @@ export class DashboardComponent{
     async getArtists(){
         const artists = await this.tunesService.getUserTopArtists(this.token!)
         this.artists=artists
-        console.log(this.artists)
         return artists
     }
     logout():String{

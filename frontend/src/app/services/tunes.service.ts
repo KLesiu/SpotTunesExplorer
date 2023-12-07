@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
     providedIn:'root'
 })
 export class TunesService{
-    private readonly URL:string="https://api.spotify.com/v1/me/top/artists?limit=10&offset=0&time_range=long_term"
+    private readonly URL:string="https://api.spotify.com/v1/me/top/artists?limit=20&offset=0&time_range=long_term"
     async getUserTopArtists(token:string){
         const response = await fetch(this.URL,{
             headers:{
